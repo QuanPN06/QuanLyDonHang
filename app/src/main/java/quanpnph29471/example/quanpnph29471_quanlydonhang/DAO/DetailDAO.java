@@ -56,6 +56,30 @@ public class DetailDAO {
         return db.insert("tbl_detail",null,values);
     }
 
+    public ArrayList<Detail> getByIdVoid(int Id) {
+        ArrayList<Detail> list = new ArrayList<>();
+        String query = "SELECT tbl_detail.*, name FROM tbl_detail  INNER JOIN tbl_product ON tbl_product.id = tbl_detail.id_product where tbl_detail.id_void= ?";
+
+        Cursor c = db.rawQuery(query, new String[]{String.valueOf(Id)});
+        if(c.getCount()>0){
+            c.moveToFirst(); // đưa trỏ về đầu dòng
+            do {
+                Detail obj = new Detail();
+                obj.setId_void(c.getInt(0));
+                obj.setId_product(c.getInt(1));
+                obj.setQuantity(c.getInt(2));
+                obj.setGia_mua(c.getInt(3));
+                obj.setName( c.getString( 4));
+
+                // cho đối tượng vào danh sách
+                list.add( obj );
+
+            }while (c.moveToNext());
+        }else{
+            Log.d("zzzzzzzzzzzz", "getList: Không có dữ liệu");
+        }
+        return  list;
+    }
 
 
 }

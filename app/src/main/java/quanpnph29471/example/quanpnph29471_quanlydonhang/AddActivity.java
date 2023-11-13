@@ -50,8 +50,9 @@ public class AddActivity extends AppCompatActivity {
         if(bundle==null){
             return;
         }
+
         VoidProduct objVoidProduct = (VoidProduct) bundle.get("void");
-        tv_id_void.setText(objVoidProduct.getId_void()+"");
+        tv_id_void.setText("ID hóa đơn: "+objVoidProduct.getId_void()+"");
 
         productDAO = new ProductDAO(this);
         List<Product> listPro = productDAO.getList();

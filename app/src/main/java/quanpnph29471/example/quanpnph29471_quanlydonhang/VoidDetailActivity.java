@@ -41,7 +41,7 @@ public class VoidDetailActivity extends AppCompatActivity {
         tv_date.setText("Ngày mua: "+objVoidProduct.getDate_buy());
 
         detailDAO = new DetailDAO(this);
-        list = detailDAO.getList();
+        list = detailDAO.getByIdVoid(objVoidProduct.getId_void());
         detailAdapter = new DetailAdapter(list,this);
 
         recyclerView.setAdapter(detailAdapter);
